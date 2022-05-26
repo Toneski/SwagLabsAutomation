@@ -7,6 +7,7 @@ public class ProductFilterDefinitions extends TestBase {
 
 	@When("^User clicks right hand dropdown and selects \"([^\"]*)\"$")
 	public void user_clicks_right_hand_dropdown_and_selects(String expectedPage) throws Throwable {
+		String expectedPage = null;
 		switch (expectedPage) {
 		case "Name (Z to A)":
 			selectFromDropdown("/html/body/div/div/div/div[1]/div[2]/div[2]/span/select", "Name (Z to A)",
@@ -24,6 +25,7 @@ public class ProductFilterDefinitions extends TestBase {
 			selectFromDropdown("/html/body/div/div/div/div[1]/div[2]/div[2]/span/select", "Name (A to Z)",
 					"//*[@id=\"header_container\"]/div[2]/div[2]/span/span");
 			Thread.sleep(500);
+			break;
 		}
 
 	}

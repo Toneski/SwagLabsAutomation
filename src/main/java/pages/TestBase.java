@@ -23,7 +23,7 @@ public class TestBase {
 	public static WebDriver initDriver() {
 		System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
-		TestBase thbobj = new TestBase();
+		
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

@@ -14,7 +14,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features = "classpath:features",
 		glue = "steps",
-		tags ="@6",
+		//tags ="@6",
 		monochrome = true,
 		dryRun=false,
 		plugin= {

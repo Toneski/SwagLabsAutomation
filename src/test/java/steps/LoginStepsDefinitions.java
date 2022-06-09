@@ -1,5 +1,7 @@
 package steps;
 
+import org.openqa.selenium.interactions.Actions;
+
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
@@ -15,41 +17,58 @@ public class LoginStepsDefinitions extends TestBase {
 		driver = initDriver();
 	}
 
-	@Given("^User is on Swag Labs login page$")
-	public void user_is_on_Swag_Labs_login_page() throws InterruptedException {
+	@Given("^User is on Youtube login page$")
+	public void user_is_on_Youtube_login_page() throws InterruptedException {
 
-		driver.get("https://www.saucedemo.com/inventory.html");
-		Thread.sleep(500);
+		driver.get("https://www.youtube.com/");
+
+		clickByXpath("/html/body/ytd-app/div[1]/div/ytd-masthead/div[3]/div[3]/div[2]/ytd-button-renderer/a/tp-yt-paper-button");
+		Thread.sleep(3000);
 	}
 
 	@When("^User enters username as \"([^\"]*)\"$")
 	public void user_enters_username_as(String username) throws InterruptedException {
-		sendByXpath("//*[@id=\"user-name\"]", username);
-		Thread.sleep(500);
+		sendByXpath("//input[@id='identifierId']", username);
+		clickByXpath("//span[text()='Next']/parent::*");
+
+		Thread.sleep(3000);
 	}
 
 	@When("^User enters password as \"([^\"]*)\"$")
 	public void user_enters_password(String password) throws InterruptedException {
-		sendByXpath("//*[@id=\"password\"]", password);
-		Thread.sleep(500);
+		sendByXpath("//input[@type='password']", password);
+		clickByXpath("//span[text()='Next']/parent::*");
+
+		Thread.sleep(3000);
 	}
 
-	@And("^User clicks on Signin button$")
-	public void user_clicks_on_Signin_button() throws InterruptedException {
-		clickByXpath("//*[@id=\"login-button\"]");
-		Thread.sleep(500);
-	}
+	@Then("^User goes to video as \"([^\"]*)\"$")
+	public void user_goes_to_video_as(String vid) throws Throwable {
 
-	@Then("^User should land on Dashboard page$")
-	public void user_should_land_on_Dashboard_page() throws Throwable {
-		String testName = "LoginTest";
-		takeScreenshot(driver, testName);
-		getTextByXpath("//*[@id=\"header_container\"]/div[2]/span", "Products");
-	}
+		
+		gotov(vid);
+Thread.sleep(1000);
+clickByXpath("//div[@id='info']//ytd-toggle-button-renderer[1]//a[1]//yt-icon-button[1]//button[1]//yt-icon[1]\r\n"
+		);
 
-	@After
-	public void teardown() throws InterruptedException {
-		Thread.sleep(300);
-		TearDown();
+
 	}
+	@Then("^leaves comment on video as \"([^\"]*)\"$")
+	public void leaves_comment_on_video_as(String comment) throws Throwable {
+		Thread.sleep(2000);
+
+		clickByXpath("//*[@id='simplebox-placeholder']");
+		Thread.sleep(1000);
+
+		sendByXpath("//*[@id='contenteditable-root']",comment);
+		Thread.sleep(1000);
+
+		clickByXpath("/html/body/ytd-app/div[1]/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/ytd-comments/ytd-item-section-renderer/div[1]/ytd-comments-header-renderer/div[5]/ytd-comment-simplebox-renderer/div[3]/ytd-comment-dialog-renderer/ytd-commentbox/div[2]/div/div[4]/div[5]/ytd-button-renderer[2]/a/tp-yt-paper-button");
+		//*[@id="button"]
+	}
+//	@After
+//	public void teardown() throws InterruptedException {
+//		Thread.sleep(300);
+//		TearDown();
+//	}
 }

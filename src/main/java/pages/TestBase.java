@@ -14,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
 public class TestBase {
@@ -21,9 +22,12 @@ public class TestBase {
 	public static WebDriver driver;
 
 	public static WebDriver initDriver() {
+
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
 		System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		
+		WebDriver driver = new ChromeDriver(options);
+	
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -82,5 +86,15 @@ public class TestBase {
 		Assert.assertEquals("no", visibleText.toLowerCase(), getText);
 
 	}
+public void gotov(String a) {
+driver.get(a);
+			
+}
+public void dismiss() {
+	
+	driver.switchTo().alert().accept();
+}
+
+
 
 }

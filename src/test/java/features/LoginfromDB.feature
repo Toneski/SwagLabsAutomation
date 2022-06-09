@@ -1,14 +1,15 @@
 @Smoke
-Feature: Swag Labs Login functionality
+Feature:  Login functionality
 Background:
-	Given User is on Swag Labs login page
+	Given User is on Youtube login page
 
 @GoodLoginScenario
 Scenario Outline: 1 User should be able to login with valid credentials 
 	When User enters username as "<username>"
 	When User enters password as "<password>"
-	And User clicks on Signin button
-	Then User should land on Dashboard page
+Then User goes to video as "<vid>"
+Then leaves comment on video as "<comment>"
+
 Examples:
-|username|password|
-|standard_user |secret_sauce|
+|username|password|vid|comment|
+|johnyfable|Tableman1!!ok!5|https://youtu.be/VwWU6CZ5lJE| Xull crushes fools|
